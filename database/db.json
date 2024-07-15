@@ -1,0 +1,22 @@
+{
+    "products": [
+        {
+            "name": "Darth Vader",
+            "price": "50",
+            "image": "https://github.com/Guillermotopp.png",
+            "id": 1
+        },
+        {
+            "name": "flas",
+            "price": "25",
+            "image": "https://github.com/Guillermotopp.png",
+            "id": 2
+        },
+        {
+            "name": "Darth Vader",
+            "price": "50",
+            "image": "https://github.com/Guillermotopp.png",
+            "id": 3
+        }
+    ]
+}
