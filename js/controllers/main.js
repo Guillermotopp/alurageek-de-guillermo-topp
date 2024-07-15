@@ -29,14 +29,19 @@ function createCard(name, price, image, id) {
 const render = async () => {
     try {
         const listProducts = await servicesProducts.productList();
-        if (listProducts.length === 0) {
-            const noProductsMessage = document.querySelector(".no-productos");
-            noProductsMessage.style.display = "block";
-        } else {
-            listProducts.forEach(product => {
-                createCard(product.name, product.price, product.image, product.id);
-            });
-        }
+       
+        listProducts.forEach(product => {
+            productosContainer.appendChild(
+                createCard(
+                    product.name,
+                    product.price,
+                    product.image,
+                    product.id
+               )
+            )   
+        });
+
+                
     } catch (error) {
         console.log(error);
     }
