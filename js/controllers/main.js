@@ -52,12 +52,11 @@ form.addEventListener("submit", async (event) => {
     console.log(image);
 
     // Agregar el nuevo producto al servidor y renderizar nuevamente
-    try {
-        await servicesProducts.createProducts(name, price, image);
-        render(); // Renderizar nuevamente después de agregar el producto
-    } catch (error) {
-        console.log(error);
-    }
+    servicesProducts
+        .createProducts(name, price, image)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+    
 });
 
 render();
