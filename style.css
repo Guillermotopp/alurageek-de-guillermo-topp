@@ -42,22 +42,23 @@ main {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: center;
+    justify-content: space-around; /* Ajustar espacio entre productos */
 }
 
 .product-card {
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 8px;
-    width: 150px;
-    padding: 10px;
+    width: calc(33.33% - 20px); /* Ancho calculado para tres productos por fila */
+    margin-bottom: 20px; /* Espacio inferior entre tarjetas */
+    box-sizing: border-box; /* Incluir bordes y padding en el cálculo del tamaño */
     text-align: center;
 }
 
 .product-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px 8px 0 0;
+    width: 100%; /* Imagen ocupará el 100% del contenedor */
+    height: auto; /* Altura automática para mantener la proporción */
+    border-radius: 8px 8px 0 0; /* Bordes redondeados solo arriba */
 }
 
 .product-card .card-container--info {
@@ -72,6 +73,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 10px;
 }
 
 .product-card .card-container--value img {

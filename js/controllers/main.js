@@ -1,7 +1,8 @@
+// main.js
+
 import { servicesProducts } from "../services/productservices.js";
 
 const productosContainer = document.querySelector("[data-product]");
-
 const form = document.querySelector("[data-form]");
 
 function createCard(name, price, image, id) {
@@ -18,13 +19,26 @@ function createCard(name, price, image, id) {
             <div class="card-container--value">
                 <p>${price}</p>
                 <button class="delete-button" data-id="${id}">
-                    <img src="./imagenes/Button.png" alt="eliminar producto">
+                    <img src="./imagenes/trash.png" alt="eliminar producto">
                 </button>
             </div>
         </div>
     `;
 
     productosContainer.appendChild(card);
+
+    // Agregar evento de click para eliminar producto
+    const deleteButton = card.querySelector(".delete-button");
+    deleteButton.addEventListener("click", async () => {
+        try {
+            const productId = deleteButton.getAttribute("data-id");
+            await servicesProducts.deleteProduct(productId);
+            card.remove(); // Eliminar la tarjeta del DOM
+        } catch (error) {
+            console.log(error);
+        }
+    });
+
     return card;
 }
 
@@ -47,15 +61,13 @@ form.addEventListener("submit", async (event) => {
     const price = document.querySelector("[data-price]").value;
     const image = document.querySelector("[data-image]").value;
 
-    console.log(name);
-    console.log(price);
-    console.log(image);
-
     // Agregar el nuevo producto al servidor y renderizar nuevamente
-    servicesProducts
-        .createProducts(name, price, image)
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
-    
+    try {
+        await servicesProducts.createProducts(name, price, image);
+        render();
+    } catch (error) {
+        console.log(error);
+    }
 });
+
 render();

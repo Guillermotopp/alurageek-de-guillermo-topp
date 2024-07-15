@@ -1,3 +1,5 @@
+// productservice.js
+
 const productList = () => {
     return fetch("http://localhost:3000/products")
         .then((res) => res.json())
@@ -18,9 +20,18 @@ const createProducts = (name, price, image) => {
     })
         .then((res) => res.json())
         .catch((err) => console.log(err));
-}
+};
+
+const deleteProduct = (productId) => {
+    return fetch(`http://localhost:3000/products/${productId}`, {
+        method: "DELETE",
+    })
+        .then((res) => res.json())
+        .catch((err) => console.log(err));
+};
 
 export const servicesProducts = {
     productList,
     createProducts,
+    deleteProduct,
 };
