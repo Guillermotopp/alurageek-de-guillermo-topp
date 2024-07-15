@@ -31,25 +31,16 @@ function createCard(name, price, image, id) {
 const render = async () => {
     try {
         const listProducts = await servicesProducts.productList();
-       
+        productosContainer.innerHTML = ""; // Limpiar el contenedor antes de renderizar
         listProducts.forEach(product => {
-            productosContainer.appendChild(
-                createCard(
-                    product.name,
-                    product.price,
-                    product.image,
-                    product.id
-               )
-            )   
+            createCard(product.name, product.price, product.image, product.id);
         });
-
-                
     } catch (error) {
         console.log(error);
     }
 };
 
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
     event.preventDefault();
     
     const name = document.querySelector("[data-name]").value;
@@ -59,6 +50,14 @@ form.addEventListener("submit", (event) => {
     console.log(name);
     console.log(price);
     console.log(image);
+
+    // Agregar el nuevo producto al servidor y renderizar nuevamente
+    try {
+        await servicesProducts.createProducts(name, price, image);
+        render(); // Renderizar nuevamente después de agregar el producto
+    } catch (error) {
+        console.log(error);
+    }
 });
 
 render();

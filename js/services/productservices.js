@@ -6,10 +6,10 @@ const productList = () => {
 
 const createProducts = (name, price, image) => {
     return fetch("http://localhost:3000/products", {
-        method:"POST", 
-        headers:{
+        method: "POST",
+        headers: {
             "Content-Type": "application/json",
-        }, 
+        },
         body: JSON.stringify({
             name,
             price,
