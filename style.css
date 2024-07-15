@@ -60,13 +60,24 @@ main {
     border-radius: 8px 8px 0 0;
 }
 
-.product-card h2 {
-    font-size: 1.2em;
-    margin: 10px 0;
+.product-card .card-container--info {
+    padding: 10px 0;
 }
 
-.product-card p {
-    color: #555;
+.product-card .card-container--info p {
+    margin: 5px 0;
+}
+
+.product-card .card-container--value {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-card .card-container--value img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
 }
 
 .no-productos {
